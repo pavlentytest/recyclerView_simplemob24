@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -32,6 +33,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyRow> {
     public void onBindViewHolder(@NonNull MyRow holder, int position) {
         holder.textView.setText(arrayList.get(position).getTitle());
         Picasso.get().load(arrayList.get(position).getUrl()).into(holder.imageView);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(holder.itemView.findViewById(R.id.layout),"N "+position,Snackbar.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
